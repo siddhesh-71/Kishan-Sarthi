@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Analysis - KishanSarthi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo"
+            style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem; color: inherit;">
+            <i data-lucide="sprout"></i>
+            <span class="brand-name" data-i18n="nav-brand">KishanSarthi</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+            <i data-lucide="menu"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+            <li><a href="schemes.html" data-i18n="nav-schemes">Schemes</a></li>
+            <li><a href="analysis.html" class="active" data-i18n="nav-features">Soil Analysis</a></li>
+            <li><a href="guidance.html" data-i18n="nav-guidance">Guidance</a></li>
+            <li><a href="community.html" data-i18n="nav-community">Community</a></li>
+            <li><a href="policies.html" data-i18n="nav-policies">Policies</a></li>
+            <li><a href="index.html#contact" data-i18n="nav-contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="toggle-btn" id="lang-toggle" title="Switch Language">
+                <i data-lucide="languages"></i>
+                <span id="lang-text" style="font-size: 0.8rem; margin-left: 4px;">HI</span>
+            </button>
+            <button class="toggle-btn" id="theme-toggle" title="Toggle Theme">
+                <i data-lucide="moon" id="theme-icon"></i>
+            </button>
+            <button class="btn-signup" data-i18n="nav-signup">Sign Up</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-wrapper" style="padding-top: 8rem; padding-bottom: 2rem;">
+            <div class="hero-tag" style="margin: 0 auto 1.5rem;">
+                <i data-lucide="shield-check"></i>
+                <span data-i18n="analysis-tag">AI-Powered Forecasting</span>
+            </div>
+            <div class="section-title">
+                <h1 data-i18n="features-title" style="font-size: 3rem;">Smart Soil Analysis</h1>
+                <p data-i18n="features-sub">Standard soil analysis machine learning model for Indian agriculture. Upload
+                    a photo and get instant results.</p>
+            </div>
+        </section>
+
+        <!-- Soil Analysis Tool -->
+        <section class="content-wrapper" style="padding-top: 0;">
+            <div class="container-minimal" style="max-width: 800px; margin: 0 auto;">
+                <div class="card analysis-card">
+                    <div class="upload-zone" id="drop-zone">
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                        <div class="upload-content" id="upload-placeholder">
+                            <i data-lucide="cloud-upload" class="upload-icon"></i>
+                            <h3 data-i18n="upload-title">Upload Soil Image</h3>
+                            <p data-i18n="upload-sub">Drag and drop your soil image to analyze</p>
+                        </div>
+                        <img id="image-preview" src="" alt="Soil Preview" class="hidden"
+                            style="max-width: 100%; border-radius: 12px;">
+                        <button id="remove-img" class="remove-btn hidden">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+
+                    <div class="options-grid" style="margin-bottom: 2rem;">
+                        <div class="input-group">
+                            <label for="region-select" data-i18n="select-region">Select Your Region</label>
+                            <select id="region-select"
+                                style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-main);">
+                                <option value="pune" data-i18n="reg-pune">Pune</option>
+                                <option value="mumbai" data-i18n="reg-mumbai">Mumbai</option>
+                                <option value="nagpur" data-i18n="reg-nagpur">Nagpur</option>
+                                <option value="nashik" data-i18n="reg-nashik">Nashik</option>
+                                <option value="aurangabad" data-i18n="reg-aurangabad">Aurangabad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="predict-btn" class="primary-btn" disabled style="width: 100%;">
+                        <span data-i18n="btn-analyze">Analyze Soil Composition</span>
+                        <i data-lucide="zap"></i>
+                    </button>
+
+                    <div id="error-container" class="error-box hidden" style="margin-top: 1.5rem;">
+                        <i data-lucide="alert-triangle"></i>
+                        <p id="error-message"></p>
+                    </div>
+                </div>
+
+                <div id="loading" class="hidden" style="text-align: center; margin-top: 2rem;">
+                    <div class="loader"></div>
+                    <p data-i18n="loading-text">AI is analyzing soil color and texture...</p>
+                </div>
+
+                <div id="results" class="results-grid hidden"
+                    style="margin-top: 3rem; display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                    <!-- Result cards will be injected by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo"
+                    style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem; color: inherit;">
+                    <i data-lucide="sprout"></i>
+                    <span class="brand-name">KishanSarthi</span>
+                </a>
+                <p data-i18n="footer-desc">Bridging the gap between traditional farming wisdom and modern technology to
+                    create a sustainable agricultural ecosystem.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                    <a href="#" class="social-link"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="social-link"><i data-lucide="youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-header" data-i18n="footer-links-h">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="schemes.html" data-i18n="nav-schemes">Government Schemes</a></li>
+                    <li><a href="policies.html" data-i18n="nav-laws">Agricultural Policies</a></li>
+                    <li><a href="guidance.html" data-i18n="nav-guidance">Farming Guidance</a></li>
+                    <li><a href="community.html" data-i18n="nav-community">Community Forum</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-header" data-i18n="footer-support-h">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#" data-i18n="sup-1">Help Center</a></li>
+                    <li><a href="#" data-i18n="sup-2">FAQs</a></li>
+                    <li><a href="#" data-i18n="sup-3">Report an Issue</a></li>
+                    <li><a href="#" data-i18n="sup-4">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-header" data-i18n="footer-contact-h">Contact Us</h4>
+                <ul class="footer-links contact-info">
+                    <li><i data-lucide="map-pin"></i> <span>Krishi Bhavan, Near New Delhi Station, New Delhi
+                            110001</span></li>
+                    <li><i data-lucide="phone"></i> <span>+91 1800-XXX-XXXX</span></li>
+                    <li><i data-lucide="mail"></i> <span>support@agriconnect.in</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KishanSarthi. All rights reserved.</p>
+            <div style="display: flex; gap: 2rem;">
+                <a href="#" style="color: inherit; text-decoration: none;">Terms of Service</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+
+</html>

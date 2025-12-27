@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KishanSarthi - Empowering Indian Farmers</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo"
+            style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem; color: inherit;">
+            <i data-lucide="sprout"></i>
+            <span class="brand-name" data-i18n="nav-brand">KishanSarthi</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+            <i data-lucide="menu"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active" data-i18n="nav-home">Home</a></li>
+            <li><a href="schemes.html" data-i18n="nav-schemes">Schemes</a></li>
+            <li><a href="analysis.html" data-i18n="nav-features">Soil Analysis</a></li>
+            <li><a href="guidance.html" data-i18n="nav-guidance">Guidance</a></li>
+            <li><a href="community.html" data-i18n="nav-community">Community</a></li>
+            <li><a href="policies.html" data-i18n="nav-policies">Policies</a></li>
+            <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="toggle-btn" id="lang-toggle" title="Switch Language">
+                <i data-lucide="languages"></i>
+                <span id="lang-text" style="font-size: 0.8rem; margin-left: 4px;">HI</span>
+            </button>
+            <button class="toggle-btn" id="theme-toggle" title="Toggle Theme">
+                <i data-lucide="moon" id="theme-icon"></i>
+            </button>
+            <button class="btn-signup" data-i18n="nav-signup">Sign Up</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <i data-lucide="shield-check"></i>
+                    <span data-i18n="hero-tag">India's Premier Agricultural Platform</span>
+                </div>
+                <h1 data-i18n="hero-title">Empowering Indian Farmers with <span>Smart Technology</span></h1>
+                <p data-i18n="hero-sub">Access government schemes, expert
+                    farming guidance, weather insights, and
+                    connect with a community of agricultural experts and fellow farmers.</p>
+                <div class="hero-btns">
+                    <button class="primary-btn" data-i18n="hero-cta-demo">
+                        <i data-lucide="play-circle"></i> Watch Demo
+                    </button>
+                    <button class="secondary-btn" data-i18n="hero-cta-login" id="hero-login-btn">
+                        <i data-lucide="log-in"></i> Login
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item"><i data-lucide="check-circle-2"></i> <span data-i18n="hero-stat-1">Available
+                            in 12+ Languages</span></div>
+                    <div class="stat-item"><i data-lucide="check-circle-2"></i> <span data-i18n="hero-stat-2">Completely
+                            Free Platform</span></div>
+                    <div class="stat-item"><i data-lucide="check-circle-2"></i> <span data-i18n="hero-stat-3">24/7
+                            Support Available</span></div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="file:///C:/Users/Asus/.gemini/antigravity/brain/0b945e68-8c0d-4a9f-99e6-ae151786a75c/friendly_farmer_support_1766757480209.png"
+                    alt="Indian Farmer and Expert - Friendly Support">
+                <div class="impact-card">
+                    <div class="logo-box" style="background: rgba(16, 185, 129, 0.1); color: #059669;">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 1.1rem; color: #059669;">60% Increase</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-dim);" data-i18n="hero-impact">in average farm
+                            yield</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Grid Section (Reference Image Match) -->
+        <section class="content-wrapper" id="guidance">
+            <div class="section-title">
+                <h2 data-i18n="services-title">Specialized Agricultural Services</h2>
+                <p data-i18n="services-sub">Tailored solutions to meet the unique needs of every Indian farmer</p>
+            </div>
+            <div class="service-grid">
+                <!-- Row 1 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="landmark"></i></div>
+                    <h3 data-i18n="svc-1-title">Government Schemes</h3>
+                    <p data-i18n="svc-1-desc">Access centralized information about all agricultural subsidies and
+                        financial support.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-1-f1">Eligibility checker for 200+
+                                schemes</span></li>
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-1-f2">Application assistance &
+                                tracking</span></li>
+                    </ul>
+                    <a href="schemes.html" class="learn-more" data-i18n="learn-more">Learn more <i
+                            data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="gavel"></i></div>
+                    <h3 data-i18n="svc-2-title">Agricultural Policies</h3>
+                    <p data-i18n="svc-2-desc">Stay updated with the latest agricultural laws and policies that affect
+                        your farm.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-2-f1">Simplified legal explanations</span>
+                        </li>
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-2-f2">Impact analysis for your
+                                region</span></li>
+                    </ul>
+                    <a href="policies.html" class="learn-more" data-i18n="learn-more">Learn more <i
+                            data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="lightbulb"></i></div>
+                    <h3 data-i18n="svc-3-title">Smart Farming Guidance</h3>
+                    <p data-i18n="svc-3-desc">Get personalized recommendations for crop selection and sustainable
+                        practices.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-3-f1">Soil health & rotation advice</span>
+                        </li>
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-3-f2">Seasonal planting calendars</span>
+                        </li>
+                    </ul>
+                    <a href="guidance.html" class="learn-more" data-i18n="learn-more">Learn more <i
+                            data-lucide="arrow-right"></i></a>
+                </div>
+                <!-- Row 2 -->
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="cpu"></i></div>
+                    <h3 data-i18n="svc-4-title">Digital Tools</h3>
+                    <p data-i18n="svc-4-desc">Access modern technological tools designed specifically for Indian
+                        agriculture.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-4-f1">Weather forecasting & alerts</span>
+                        </li>
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-4-f2">Crop disease identification</span>
+                        </li>
+                    </ul>
+                    <a href="tools.html" class="learn-more" data-i18n="learn-more">Learn more <i
+                            data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="users"></i></div>
+                    <h3 data-i18n="svc-5-title">Farmer Community</h3>
+                    <p data-i18n="svc-5-desc">Connect with fellow farmers and agricultural experts locally and
+                        nationally.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-5-f1">Regional farming groups</span></li>
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-5-f2">Expert Q&A sessions</span></li>
+                    </ul>
+                    <a href="community.html" class="learn-more" data-i18n="learn-more">Learn more <i
+                            data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="trending-up"></i></div>
+                    <h3 data-i18n="svc-6-title">Market Intelligence</h3>
+                    <p data-i18n="svc-6-desc">Real-time market price data and demand forecasts for your crops.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-6-f1">Local Mandi price tracking</span>
+                        </li>
+                        <li><i data-lucide="check"></i> <span data-i18n="svc-6-f2">Direct buyer connections</span></li>
+                    </ul>
+                    <a href="market.html" class="learn-more" data-i18n="learn-more">Learn more <i
+                            data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="community">
+            <div class="testimonial-container">
+                <div class="section-title">
+                    <h2 data-i18n="testi-title">Real Farmers, Real Results</h2>
+                    <p data-i18n="testi-sub">Hear from farmers across India who have transformed their practices using
+                        KishanSarthi.</p>
+                </div>
+            </div>
+
+            <div class="testimonial-track-container">
+                <div class="testimonial-track">
+                    <!-- Set 1 -->
+                    <div class="testimonial-card">
+                        <div class="user-meta">
+                            <div class="user-avatar">RK</div>
+                            <div class="user-info">
+                                <h4>Rajesh Kumar</h4>
+                                <p data-i18n="user-1-role">Wheat & Rice Farmer, Punjab</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                                data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testi-1">"KishanSarthi helped me access PM-KISAN benefits
+                            I
+                            didn't know I was eligible for. My income increased by ₹40,000 in just one season!"</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="user-meta">
+                            <div class="user-avatar">PS</div>
+                            <div class="user-info">
+                                <h4>Priya Sharma</h4>
+                                <p data-i18n="user-2-role">Cotton Farmer, Maharashtra</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                                data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testi-2">"The smart soil analysis tool recommended a
+                            specific
+                            crop rotation that saved my harvest during unexpected rains. Truly a life-saver."</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="user-meta">
+                            <div class="user-avatar">VS</div>
+                            <div class="user-info">
+                                <h4>Vikram Singh</h4>
+                                <p data-i18n="user-3-role">Millet Farmer, Rajasthan</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                                data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testi-3">"Connecting with experts through the community
+                            forum
+                            allowed me to implement organic farming techniques that reduced my input costs by 30%."</p>
+                    </div>
+                    <!-- New Item 1 -->
+                    <div class="testimonial-card">
+                        <div class="user-meta">
+                            <div class="user-avatar">AR</div>
+                            <div class="user-info">
+                                <h4>Anita Rao</h4>
+                                <p>Saffron Grower, Kashmir</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                                data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="testimonial-text">"The market intelligence feature helped me sell my produce at the
+                            right time. I got 20% better rates than the local mandi."</p>
+                    </div>
+
+                    <!-- Set 2 (Duplicate for smooth loop) -->
+                    <div class="testimonial-card">
+                        <div class="user-meta">
+                            <div class="user-avatar">RK</div>
+                            <div class="user-info">
+                                <h4>Rajesh Kumar</h4>
+                                <p data-i18n="user-1-role">Wheat & Rice Farmer, Punjab</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                                data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testi-1">"KishanSarthi helped me access PM-KISAN benefits
+                            I
+                            didn't know I was eligible for. My income increased by ₹40,000 in just one season!"</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="user-meta">
+                            <div class="user-avatar">PS</div>
+                            <div class="user-info">
+                                <h4>Priya Sharma</h4>
+                                <p data-i18n="user-2-role">Cotton Farmer, Maharashtra</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                                data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testi-2">"The smart soil analysis tool recommended a
+                            specific
+                            crop rotation that saved my harvest during unexpected rains. Truly a life-saver."</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="user-meta">
+                            <div class="user-avatar">VS</div>
+                            <div class="user-info">
+                                <h4>Vikram Singh</h4>
+                                <p data-i18n="user-3-role">Millet Farmer, Rajasthan</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                                data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testi-3">"Connecting with experts through the community
+                            forum
+                            allowed me to implement organic farming techniques that reduced my input costs by 30%."</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="user-meta">
+                            <div class="user-avatar">AR</div>
+                            <div class="user-info">
+                                <h4>Anita Rao</h4>
+                                <p>Saffron Grower, Kashmir</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                                data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="testimonial-text">"The market intelligence feature helped me sell my produce at the
+                            right time. I got 20% better rates than the local mandi."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="final-cta">
+            <h2 data-i18n="cta-title">Ready to Transform Your Farming?</h2>
+            <p data-i18n="cta-sub">Join 50,000+ farmers who are already using our platform to increase productivity and
+                income.</p>
+            <div class="cta-btns">
+                <button class="btn-signup" style="padding: 1.25rem 3rem; font-size: 1.25rem;" data-i18n="btn-join">Get
+                    Started Now</button>
+                <button class="secondary-btn"
+                    style="border-color: white; color: white; padding: 1.25rem 3rem; font-size: 1.25rem;"
+                    data-i18n="btn-callback">Request Call Back</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer" id="contact">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"
+                        style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem; color: inherit;">
+                        <i data-lucide="sprout"></i>
+                        <span class="brand-name">KishanSarthi</span>
+                    </a>
+                    <p data-i18n="footer-desc">Bridging the gap between traditional farming wisdom and modern technology
+                        to create a sustainable agricultural ecosystem.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-header" data-i18n="footer-links-h">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="schemes.html" data-i18n="nav-schemes">Government Schemes</a></li>
+                        <li><a href="policies.html" data-i18n="nav-laws">Agricultural Policies</a></li>
+                        <li><a href="guidance.html" data-i18n="nav-guidance">Farming Guidance</a></li>
+                        <li><a href="community.html" data-i18n="nav-community">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-header" data-i18n="footer-support-h">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-i18n="sup-1">Help Center</a></li>
+                        <li><a href="#" data-i18n="sup-2">FAQs</a></li>
+                        <li><a href="#" data-i18n="sup-3">Report an Issue</a></li>
+                        <li><a href="#" data-i18n="sup-4">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-header" data-i18n="footer-contact-h">Contact Us</h4>
+                    <ul class="footer-links contact-info">
+                        <li><i data-lucide="map-pin"></i> <span>Krishi Bhavan, Near New Delhi Station, New Delhi
+                                110001</span></li>
+                        <li><i data-lucide="phone"></i> <span>+91 1800-XXX-XXXX</span></li>
+                        <li><i data-lucide="mail"></i> <span>support@agriconnect.in</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KishanSarthi. All rights reserved.</p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#" style="color: inherit; text-decoration: none;">Terms of Service</a>
+                    <a href="#" style="color: inherit; text-decoration: none;">Cookie Policy</a>
+                </div>
+            </div>
+        </footer>
+
+        <a href="#home" class="fab-up"><i data-lucide="arrow-up"></i></a>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

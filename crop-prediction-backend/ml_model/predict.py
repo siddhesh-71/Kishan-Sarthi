@@ -18,6 +18,31 @@ def load_model():
     
     return joblib.load(model_path)
 
+# Check if image is soil
+def is_soil_image(img, hsv_means, texture):
+    h_mean, s_mean, v_mean = hsv_means
+    
+    # Stricter Heuristics for Soil:
+    # 1. Colors must be in the typical soil range (Browns/Blacks/Reds/Grays)
+    # 2. Saturation: Natural soil is rarely extremely vibrant (S < 150)
+    # 3. Value: Not too bright (no sky/white walls) and not pure black
+    # 4. Texture: Soil has granularity (std dev > 10 usually)
+    
+    # Typical Soil Hue (HSV in OpenCV): 
+    # - Brown/Red/Dark Orange: 0-25
+    # - Gray/Black: Any hue if Saturation is very low
+    # - Green/Clays: 30-90 (occasionally)
+    
+    is_brown_red = (h_mean < 25) # Standard soil
+    is_clay = (30 < h_mean < 90) and (s_mean < 80) # Only if low saturation
+    is_color_ok = is_brown_red or is_clay
+    
+    is_saturation_ok = (s_mean < 150) and (s_mean > 5) # Not neon, not pure grayscale
+    is_value_ok = (30 < v_mean < 200) # Not pure black, not bright light
+    is_texture_ok = texture > 12 # Soil is granular, not a smooth surface
+    
+    return is_color_ok and is_saturation_ok and is_value_ok and is_texture_ok
+
 # Extract soil features from image
 def extract_soil_features(image_path):
     # Read the image
@@ -33,11 +58,13 @@ def extract_soil_features(image_path):
     s_mean = np.mean(hsv[:, :, 1])
     v_mean = np.mean(hsv[:, :, 2])
     
-    # Calculate texture features (using gray-level co-occurrence matrix)
+    # Calculate texture features
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
-    # Simplistic texture analysis (standard deviation of pixel values)
     texture = np.std(gray)
+    
+    # Validate if it's soil
+    if not is_soil_image(img, (h_mean, s_mean, v_mean), texture):
+        raise ValueError("Soil verification failed! This image does not appear to be soil. Please check the image and try again.")
     
     # Define soil types based on color and texture
     # This is a simplified approach - a real system would use more sophisticated analysis

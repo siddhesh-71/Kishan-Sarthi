@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Community - KishanSarthi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo"
+            style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem; color: inherit;">
+            <i data-lucide="sprout"></i>
+            <span class="brand-name" data-i18n="nav-brand">KishanSarthi</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+            <i data-lucide="menu"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+            <li><a href="schemes.html" data-i18n="nav-schemes">Schemes</a></li>
+            <li><a href="analysis.html" data-i18n="nav-features">Soil Analysis</a></li>
+            <li><a href="guidance.html" data-i18n="nav-guidance">Guidance</a></li>
+            <li><a href="community.html" class="active" data-i18n="nav-community">Community</a></li>
+            <li><a href="policies.html" data-i18n="nav-policies">Policies</a></li>
+            <li><a href="index.html#contact" data-i18n="nav-contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="toggle-btn" id="lang-toggle" title="Switch Language">
+                <i data-lucide="languages"></i>
+                <span id="lang-text" style="font-size: 0.8rem; margin-left: 4px;">HI</span>
+            </button>
+            <button class="toggle-btn" id="theme-toggle" title="Toggle Theme">
+                <i data-lucide="moon" id="theme-icon"></i>
+            </button>
+            <button class="btn-signup" data-i18n="nav-signup">Sign Up</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-wrapper" style="padding-top: 8rem; padding-bottom: 2rem;">
+            <div class="hero-tag" style="margin: 0 auto 1.5rem;">
+                <i data-lucide="users"></i>
+                <span data-i18n="community-tag">Farmer Forums & Experts</span>
+            </div>
+            <div class="section-title">
+                <h1 data-i18n="svc-5-title" style="font-size: 3rem;">Farmer Community</h1>
+                <p data-i18n="svc-5-desc">Connect with fellow farmers and agricultural experts locally and nationally.
+                    Share knowledge, ask questions, and grow together.</p>
+            </div>
+        </section>
+
+        <!-- Forums Grid -->
+        <section class="content-wrapper">
+            <div class="grid-layout">
+                <div class="card" style="padding: 2.5rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <i data-lucide="message-square" style="color: var(--primary);"></i>
+                        <span class="hero-tag" style="font-size: 0.7rem;">Active Now</span>
+                    </div>
+                    <h3 data-i18n="forum-1-title">Regional Wheat Growing</h3>
+                    <p data-i18n="forum-1-desc">Discuss challenges and tips for wheat farming in North India.</p>
+                    <a href="#" class="learn-more" data-i18n="btn-join-forum">Join Discussion <i
+                            data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="card" style="padding: 2.5rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <i data-lucide="shield-check" style="color: var(--primary);"></i>
+                        <span class="hero-tag" style="background: #E0E7FF; color: #4338CA; font-size: 0.7rem;">Verified
+                            Experts</span>
+                    </div>
+                    <h3 data-i18n="forum-2-title">Ask an Agronomist</h3>
+                    <p data-i18n="forum-2-desc">Get your technical farming questions answered by certified
+                        professionals.</p>
+                    <a href="#" class="learn-more" data-i18n="btn-join-forum">Join Discussion <i
+                            data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo"
+                    style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem; color: inherit;">
+                    <i data-lucide="sprout"></i>
+                    <span class="brand-name">KishanSarthi</span>
+                </a>
+                <p data-i18n="footer-desc">Bridging the gap between traditional farming wisdom and modern technology to
+                    create a sustainable agricultural ecosystem.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                    <a href="#" class="social-link"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="social-link"><i data-lucide="youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-header" data-i18n="footer-links-h">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="schemes.html" data-i18n="nav-schemes">Government Schemes</a></li>
+                    <li><a href="policies.html" data-i18n="nav-laws">Agricultural Policies</a></li>
+                    <li><a href="guidance.html" data-i18n="nav-guidance">Farming Guidance</a></li>
+                    <li><a href="community.html" data-i18n="nav-community">Community Forum</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-header" data-i18n="footer-support-h">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#" data-i18n="sup-1">Help Center</a></li>
+                    <li><a href="#" data-i18n="sup-2">FAQs</a></li>
+                    <li><a href="#" data-i18n="sup-3">Report an Issue</a></li>
+                    <li><a href="#" data-i18n="sup-4">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-header" data-i18n="footer-contact-h">Contact Us</h4>
+                <ul class="footer-links contact-info">
+                    <li><i data-lucide="map-pin"></i> <span>Krishi Bhavan, Near New Delhi Station, New Delhi
+                            110001</span></li>
+                    <li><i data-lucide="phone"></i> <span>+91 1800-XXX-XXXX</span></li>
+                    <li><i data-lucide="mail"></i> <span>support@agriconnect.in</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KishanSarthi. All rights reserved.</p>
+            <div style="display: flex; gap: 2rem;">
+                <a href="#" style="color: inherit; text-decoration: none;">Terms of Service</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+
+</html>
