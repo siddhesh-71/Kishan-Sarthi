@@ -125,16 +125,26 @@ or use a live server extension.
 
 ### 3️⃣ Backend Setup
 
+Navigate to the backend directory:
 ```bash
 cd crop-prediction-backend
+```
+
+Install Node.js dependencies:
+```bash
+npm install
+```
+
+Install Python dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-Run the backend server (example):
-
+Start the server:
 ```bash
-python app.py
+npm start
 ```
+The server will run on `http://localhost:5000`.
 
 ---
 

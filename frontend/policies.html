@@ -59,9 +59,50 @@
             </div>
         </section>
 
-        <!-- Laws Grid -->
+        <!-- Search Interface -->
+        <section class="content-wrapper" style="padding-top: 0;">
+            <div class="search-container">
+                <h3 style="text-align: center; margin-bottom: 2rem;" data-i18n="policy-search-title">Find Policies &
+                    Regulations</h3>
+                <div class="search-controls">
+                    <div class="search-input-wrapper">
+                        <i data-lucide="search"></i>
+                        <input type="text" class="policy-search-input"
+                            placeholder="Search for policies, acts, regulations..."
+                            data-i18n-attr="placeholder:policy-search-placeholder">
+                    </div>
+                    <div class="policy-filter-group filter-group">
+                        <label data-i18n="policy-filter-cat">Category</label>
+                        <select>
+                            <option value="all" data-i18n="opt-all">All Categories</option>
+                            <option value="Price Support">Price Support</option>
+                            <option value="Trade & Marketing">Trade & Marketing</option>
+                            <option value="Land Rights">Land Rights</option>
+                            <option value="Legal Framework">Legal Framework</option>
+                            <option value="Price Control">Price Control</option>
+                            <option value="Debt Relief">Debt Relief</option>
+                            <option value="Seed & Variety">Seed & Variety</option>
+                            <option value="Water Management">Water Management</option>
+                            <option value="Export-Import">Export-Import</option>
+                        </select>
+                    </div>
+                    <div class="policy-filter-group filter-group">
+                        <label data-i18n="policy-filter-type">Type</label>
+                        <select>
+                            <option value="all" data-i18n="opt-all">All</option>
+                            <option value="Central" data-i18n="opt-central">Central Govt</option>
+                            <option value="State" data-i18n="opt-state">State Govt</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="primary-btn sm policy-search-btn" style="width: 100%;"
+                    data-i18n="btn-policy-search">Search Policies</button>
+            </div>
+        </section>
+
+        <!-- Policies Grid -->
         <section class="content-wrapper">
-            <div class="grid-layout" id="laws-list">
+            <div class="grid-layout" id="policies-list">
                 <!-- Data will be populated by JS -->
             </div>
         </section>

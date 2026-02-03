@@ -9,8 +9,16 @@ const app = express();
 const port = 5000;
 
 // Middleware
-app.use(cors()); 
+app.use(cors());
 app.use(express.json());
+
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+// Serve index.html for root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
 
 // Configure multer for handling file uploads
 const storage = multer.diskStorage({
@@ -85,7 +93,7 @@ app.post("/predict", upload.single("image"), (req, res) => {
 
 // Check if model exists route
 app.get("/model-status", (req, res) => {
-  const modelPath = path.join(__dirname, "ml_model", "crop_model.joblib");
+  const modelPath = path.join(__dirname, "ml_model", "models", "crop_prediction_model.joblib");
   const exists = fs.existsSync(modelPath);
   res.json({ modelExists: exists });
 });
