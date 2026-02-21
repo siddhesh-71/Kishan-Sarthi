@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Community Page Test</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Community Page JavaScript Test</h1>
+    <div id="test-results"></div>
+
+    <script src="app.js"></script>
+    <script>
+        const results = [];
+
+        // Test 1: Check if communityData exists
+        if (typeof communityData !== 'undefined') {
+            results.push('<p class="success">✓ communityData is loaded</p>');
+            results.push(`<div class="info">Forums: ${communityData.forums.length}, Discussions: ${communityData.discussions.length}</div>`);
+        } else {
+            results.push('<p class="error">✗ communityData is NOT loaded</p>');
+        }
+
+        // Test 2: Check if functions exist
+        if (typeof renderCommunityStats === 'function') {
+            results.push('<p class="success">✓ renderCommunityStats function exists</p>');
+        } else {
+            results.push('<p class="error">✗ renderCommunityStats function NOT found</p>');
+        }
+
+        if (typeof renderForums === 'function') {
+            results.push('<p class="success">✓ renderForums function exists</p>');
+        } else {
+            results.push('<p class="error">✗ renderForums function NOT found</p>');
+        }
+
+        if (typeof initCommunity === 'function') {
+            results.push('<p class="success">✓ initCommunity function exists</p>');
+        } else {
+            results.push('<p class="error">✗ initCommunity function NOT found</p>');
+        }
+
+        // Test 3: Try to create a test element
+        const testDiv = document.createElement('div');
+        testDiv.id = 'community-stats';
+        document.body.appendChild(testDiv);
+
+        if (typeof renderCommunityStats === 'function') {
+            renderCommunityStats();
+            if (testDiv.innerHTML.length > 0) {
+                results.push('<p class="success">✓ renderCommunityStats successfully generated HTML</p>');
+                results.push(`<div class="info">Generated ${testDiv.innerHTML.length} characters of HTML</div>`);
+            } else {
+                results.push('<p class="error">✗ renderCommunityStats did not generate any HTML</p>');
+            }
+        }
+
+        document.getElementById('test-results').innerHTML = results.join('');
+    </script>
+</body>
+
+</html>

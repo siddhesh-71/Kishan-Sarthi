@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farmer Community - KishanSarthi</title>
+    <meta name="description"
+        content="Connect with fellow farmers and agricultural experts. Share knowledge, ask questions, and grow together on KishanSarthi.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -46,44 +49,165 @@
     </header>
 
     <main>
-        <section class="content-wrapper" style="padding-top: 8rem; padding-bottom: 2rem;">
-            <div class="hero-tag" style="margin: 0 auto 1.5rem;">
-                <i data-lucide="users"></i>
-                <span data-i18n="community-tag">Farmer Forums & Experts</span>
-            </div>
-            <div class="section-title">
-                <h1 data-i18n="svc-5-title" style="font-size: 3rem;">Farmer Community</h1>
-                <p data-i18n="svc-5-desc">Connect with fellow farmers and agricultural experts locally and nationally.
-                    Share knowledge, ask questions, and grow together.</p>
+        <!-- Hero Section -->
+        <section class="community-hero">
+            <div class="community-hero-bg"></div>
+            <div class="content-wrapper" style="position: relative; z-index: 2;">
+                <div class="hero-tag" style="margin: 0 auto 1.5rem;">
+                    <i data-lucide="users"></i>
+                    <span data-i18n="community-tag">Farmer Forums & Experts</span>
+                </div>
+                <div class="section-title">
+                    <h1 style="font-size: 3rem; color: var(--text-main);">Farmer Community</h1>
+                    <p style="max-width: 700px; margin: 0 auto;">Connect with fellow farmers and agricultural experts
+                        locally and nationally. Share knowledge, ask questions, and grow together.</p>
+                </div>
+
+                <!-- Community Stats (Dynamic) -->
+                <div id="community-stats" class="community-stats-grid"></div>
             </div>
         </section>
 
-        <!-- Forums Grid -->
-        <section class="content-wrapper">
-            <div class="grid-layout">
-                <div class="card" style="padding: 2.5rem;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                        <i data-lucide="message-square" style="color: var(--primary);"></i>
-                        <span class="hero-tag" style="font-size: 0.7rem;">Active Now</span>
-                    </div>
-                    <h3 data-i18n="forum-1-title">Regional Wheat Growing</h3>
-                    <p data-i18n="forum-1-desc">Discuss challenges and tips for wheat farming in North India.</p>
-                    <a href="#" class="learn-more" data-i18n="btn-join-forum">Join Discussion <i
-                            data-lucide="arrow-right"></i></a>
+        <!-- Ask a Question CTA -->
+        <section class="content-wrapper" style="padding-top: 3rem; padding-bottom: 1rem;">
+            <div class="community-ask-bar" id="community-ask-bar">
+                <div class="ask-bar-icon">
+                    <i data-lucide="pen-line"></i>
                 </div>
-                <div class="card" style="padding: 2.5rem;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                        <i data-lucide="shield-check" style="color: var(--primary);"></i>
-                        <span class="hero-tag" style="background: #E0E7FF; color: #4338CA; font-size: 0.7rem;">Verified
-                            Experts</span>
+                <div class="ask-bar-content">
+                    <h3>Have a farming question?</h3>
+                    <p>Ask the community and get answers from experienced farmers and verified experts.</p>
+                </div>
+                <button class="primary-btn community-ask-btn" id="ask-question-btn">
+                    <i data-lucide="plus-circle"></i>
+                    Ask a Question
+                </button>
+            </div>
+        </section>
+
+        <!-- Ask Question Modal -->
+        <div class="community-modal-overlay" id="ask-modal-overlay">
+            <div class="community-modal">
+                <div class="community-modal-header">
+                    <h3><i data-lucide="message-square-plus"></i> Ask the Community</h3>
+                    <button class="community-modal-close" id="close-modal-btn">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <form id="ask-question-form" class="community-modal-body">
+                    <div class="form-group">
+                        <label for="question-title">Question Title</label>
+                        <input type="text" id="question-title" placeholder="e.g., Best organic fertilizer for cotton?"
+                            required>
                     </div>
-                    <h3 data-i18n="forum-2-title">Ask an Agronomist</h3>
-                    <p data-i18n="forum-2-desc">Get your technical farming questions answered by certified
-                        professionals.</p>
-                    <a href="#" class="learn-more" data-i18n="btn-join-forum">Join Discussion <i
-                            data-lucide="arrow-right"></i></a>
+                    <div class="form-group">
+                        <label for="question-category">Category</label>
+                        <select id="question-category">
+                            <option value="general">General Farming</option>
+                            <option value="soil">Soil & Fertilizer</option>
+                            <option value="pest">Pest & Disease</option>
+                            <option value="irrigation">Water & Irrigation</option>
+                            <option value="market">Market & Selling</option>
+                            <option value="organic">Organic Farming</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="question-detail">Details</label>
+                        <textarea id="question-detail" rows="4"
+                            placeholder="Describe your question in detail..."></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; padding: 1rem; font-size: 1rem;">
+                        <i data-lucide="send"></i> Post Question
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Forum Discussion Modal -->
+        <div class="community-modal-overlay" id="forum-modal-overlay">
+            <div class="community-modal forum-discussion-modal">
+                <div class="community-modal-header" id="forum-modal-header">
+                    <h3 id="forum-modal-title"><i data-lucide="message-square"></i> Forum</h3>
+                    <div style="display:flex; gap:0.5rem; align-items:center;">
+                        <button class="forum-join-confirm-btn" id="forum-join-confirm-btn">
+                            <i data-lucide="user-plus"></i> <span id="forum-join-label">Join Forum</span>
+                        </button>
+                        <button class="community-modal-close" id="close-forum-modal-btn">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="forum-modal-meta" class="forum-modal-meta"></div>
+                <div id="forum-modal-threads" class="forum-modal-threads"></div>
+                <div class="forum-modal-reply-bar">
+                    <div class="forum-reply-avatar">YO</div>
+                    <input type="text" id="forum-reply-input" placeholder="Write a reply or share your experience…"
+                        autocomplete="off">
+                    <button class="forum-reply-send-btn" id="forum-reply-send-btn">
+                        <i data-lucide="send"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forums Grid (Dynamic) -->
+        <section class="content-wrapper" style="padding-top: 2rem; padding-bottom: 3rem;">
+            <div class="community-section-header">
+                <div>
+                    <h2>Popular Forums</h2>
+                    <p>Join topic-specific communities and connect with like-minded farmers</p>
+                </div>
+            </div>
+            <div id="forums-grid" class="community-forums-grid"></div>
+        </section>
+
+
+        <!-- Recent Discussions (Dynamic) -->
+        <section class="community-discussions-section">
+            <div class="content-wrapper">
+                <div class="community-section-header">
+                    <div>
+                        <h2>Recent Discussions</h2>
+                        <p>Browse the latest questions and conversations from the community</p>
+                    </div>
+                    <div class="community-filter-tabs" id="discussion-filters">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="expert">Expert Replies</button>
+                        <button class="filter-tab" data-filter="trending">Trending</button>
+                    </div>
+                </div>
+                <div id="recent-discussions" class="community-discussions-list"></div>
+            </div>
+        </section>
+
+        <!-- Featured Experts (Dynamic) -->
+        <section class="content-wrapper" style="padding-top: 3rem; padding-bottom: 4rem;">
+            <div class="community-section-header" style="justify-content: center; text-align: center;">
+                <div>
+                    <h2>Featured Experts</h2>
+                    <p>Get answers from verified agricultural professionals</p>
+                </div>
+            </div>
+            <div id="featured-experts" class="community-experts-grid"></div>
+        </section>
+
+        <!-- Join CTA -->
+        <section class="community-join-cta">
+            <div class="content-wrapper" style="text-align: center; padding: 4rem 5%;">
+                <div class="community-cta-icon">
+                    <i data-lucide="handshake"></i>
+                </div>
+                <h2>Join the Growing Community</h2>
+                <p>Connect with over <span id="cta-farmer-count">12,500</span> farmers and <span
+                        id="cta-expert-count">350</span> experts across India.</p>
+                <div class="cta-btns">
+                    <button class="primary-btn" style="padding: 1rem 2.5rem; font-size: 1.05rem; border-radius: 14px;">
+                        <i data-lucide="user-plus"></i> Sign Up Free
+                    </button>
+                    <button class="secondary-btn"
+                        style="padding: 1rem 2.5rem; font-size: 1.05rem; border-radius: 14px; border-color: white; color: white;">
+                        <i data-lucide="compass"></i> Explore Forums
+                    </button>
                 </div>
             </div>
         </section>
@@ -144,6 +268,513 @@
         </div>
     </footer>
     <script src="app.js"></script>
+    <script src="chatbot.js"></script>
+    <script>
+        // ─── Community Page Enhancements ──────────────────────────────────────────
+        // Runs after app.js; mutates communityData and overrides render functions
+        // with richer data, animated counters, upvote buttons, and more.
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // ── 1. Add more discussions ────────────────────────────────────────────
+            if (typeof communityData !== 'undefined') {
+                // Enrich existing discussions with avatarColor and liked flag
+                communityData.discussions.forEach(function (d, i) {
+                    if (!d.avatarColor) {
+                        var colors = [
+                            'linear-gradient(135deg,#f59e0b,#d97706)',
+                            'linear-gradient(135deg,#3b82f6,#6366f1)',
+                            'linear-gradient(135deg,#10b981,#059669)',
+                            'linear-gradient(135deg,#8b5cf6,#7c3aed)',
+                            'linear-gradient(135deg,#ef4444,#dc2626)'
+                        ];
+                        d.avatarColor = colors[i % colors.length];
+                    }
+                    if (d.liked === undefined) d.liked = false;
+                });
+
+                // Push more rich discussions
+                var moreDis = [
+                    {
+                        id: 6, title: 'Soybean harvesting tips for small machinery',
+                        preview: 'We have a 7-acre soybean plot and only a small thresher. What are the best practices to reduce grain loss? Timing and ideal moisture % tips welcome.',
+                        author: 'Pradeep Lonkar', authorInitials: 'PL',
+                        avatarColor: 'linear-gradient(135deg,#f59e0b,#d97706)',
+                        replies: 6, views: 98, likes: 9, liked: false, timeAgo: 24,
+                        category: 'General Farming', hasExpertReply: false, isTrending: false
+                    },
+                    {
+                        id: 7, title: 'How to get soil health card in Rajasthan?',
+                        preview: 'I applied for soil health card 3 months ago but have not received it. What is the correct procedure and which district office to contact?',
+                        author: 'Bharat Lal', authorInitials: 'BL',
+                        avatarColor: 'linear-gradient(135deg,#ef4444,#dc2626)',
+                        replies: 4, views: 72, likes: 7, liked: false, timeAgo: 30,
+                        category: 'Government Schemes', hasExpertReply: true, isTrending: false
+                    },
+                    {
+                        id: 8, title: 'Mandi price for onion dropping — should I store?',
+                        preview: 'Onion prices dropped to ₹8/kg this week. Should I invest in cold storage for 2-3 months and wait for better prices, or sell now at a loss?',
+                        author: 'Ganesh Shinde', authorInitials: 'GS',
+                        avatarColor: 'linear-gradient(135deg,#8b5cf6,#7c3aed)',
+                        replies: 17, views: 320, likes: 38, liked: false, timeAgo: 36,
+                        category: 'Market & Selling', hasExpertReply: true, isTrending: true
+                    },
+                    {
+                        id: 9, title: 'Vermicomposting setup — how to start from scratch?',
+                        preview: 'I want to set up vermicomposting using cow dung and crop residue. How many earthworms per kg of compost and what is the ideal bin size for 2 acres?',
+                        author: 'Sarla Bai', authorInitials: 'SB',
+                        avatarColor: 'linear-gradient(135deg,#10b981,#34d399)',
+                        replies: 11, views: 145, likes: 21, liked: false, timeAgo: 48,
+                        category: 'Organic Farming', hasExpertReply: false, isTrending: false
+                    },
+                    {
+                        id: 10, title: 'Sugarcane ratoon crop — worth it or not?',
+                        preview: 'After harvesting my planted crop, the ratoon looks weak. Any tips on ratoon management with proper fertilizer and weed control to maximize yield?',
+                        author: 'Kiran Gaikwad', authorInitials: 'KG',
+                        avatarColor: 'linear-gradient(135deg,#3b82f6,#60a5fa)',
+                        replies: 5, views: 88, likes: 12, liked: false, timeAgo: 60,
+                        category: 'General Farming', hasExpertReply: false, isTrending: false
+                    }
+                ];
+                // Only push if they don't exist yet
+                moreDis.forEach(function (d) {
+                    if (!communityData.discussions.find(function (x) { return x.id === d.id; })) {
+                        communityData.discussions.push(d);
+                    }
+                });
+
+                // Add 2 more experts
+                var moreExperts = [
+                    {
+                        id: 5, name: 'Prof. Nandkumar Rao', initials: 'NR',
+                        specialty: 'Agronomist',
+                        description: 'Retired ICAR scientist with 25 years of research in cereal crops and climate-smart agriculture practices.',
+                        answers: 612, rating: 4.9, available: true,
+                        avatarGradient: 'linear-gradient(135deg,#f59e0b,#d97706)',
+                        tags: ['Wheat', 'Rice', 'Pulses', 'Climate Adaptation']
+                    },
+                    {
+                        id: 6, name: 'Dr. Priya Tiwari', initials: 'PT',
+                        specialty: 'Water Scientist',
+                        description: 'Groundwater expert helping farmers across Vidarbha and Marathwada with drought mitigation strategies.',
+                        answers: 178, rating: 4.7, available: false,
+                        avatarGradient: 'linear-gradient(135deg,#06b6d4,#0891b2)',
+                        tags: ['Groundwater', 'Drought', 'Watershed']
+                    }
+                ];
+                moreExperts.forEach(function (e) {
+                    if (!communityData.experts.find(function (x) { return x.id === e.id; })) {
+                        communityData.experts.push(e);
+                    }
+                });
+            }
+
+            // ── 2. Override renderCommunityStats with animated counters ────────────
+            window.renderCommunityStats = function () {
+                var el = document.getElementById('community-stats');
+                if (!el) return;
+                var s = communityData.stats;
+                el.innerHTML =
+                    statCard('users', 'rgba(16,185,129,.12)', '#059669', s.farmers, '+', '', 'Active Farmers') +
+                    statCard('shield-check', 'rgba(99,102,241,.12)', '#6366f1', s.experts, '+', '', 'Verified Experts') +
+                    statCard('message-circle', 'rgba(245,158,11,.12)', '#f59e0b', s.discussions, '+', 'K', 'Discussions') +
+                    statCard('check-circle-2', 'rgba(16,185,129,.12)', '#10b981', s.solutions, '+', 'K', 'Problems Solved');
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+
+                // Animate numbers
+                setTimeout(function () {
+                    el.querySelectorAll('.comm-stat-value[data-target]').forEach(function (v) {
+                        var target = parseInt(v.dataset.target);
+                        var suffix = v.dataset.suffix || '';
+                        var scale = v.dataset.scale;
+                        var dur = 1400, t0 = performance.now();
+                        (function tick(now) {
+                            var p = Math.min((now - t0) / dur, 1);
+                            var ease = 1 - Math.pow(1 - p, 3);
+                            var cur = Math.round(target * ease);
+                            v.textContent = scale === 'K'
+                                ? (cur / 1000).toFixed(0) + 'K' + suffix
+                                : cur.toLocaleString() + suffix;
+                            if (p < 1) requestAnimationFrame(tick);
+                        })(performance.now());
+                    });
+                }, 200);
+
+                // Update CTA
+                var cf = document.getElementById('cta-farmer-count');
+                var ce = document.getElementById('cta-expert-count');
+                if (cf) cf.textContent = s.farmers.toLocaleString();
+                if (ce) ce.textContent = s.experts.toLocaleString();
+            };
+
+            function statCard(icon, bg, color, target, suffix, scale, label) {
+                return '<div class="comm-stat-card">' +
+                    '<div class="comm-stat-icon" style="background:' + bg + ';color:' + color + ';">' +
+                    '<i data-lucide="' + icon + '"></i></div>' +
+                    '<div class="comm-stat-value" data-target="' + target + '"' +
+                    (suffix ? ' data-suffix="' + suffix + '"' : '') +
+                    (scale ? ' data-scale="' + scale + '"' : '') +
+                    '>0</div>' +
+                    '<div class="comm-stat-label">' + label + '</div>' +
+                    '</div>';
+            }
+
+            // ── 3. Override renderRecentDiscussions with upvote buttons ────────────
+            window.renderRecentDiscussions = function (filter) {
+                var wrap = document.getElementById('recent-discussions');
+                if (!wrap) return;
+                var list = communityData.discussions;
+                if (filter === 'expert') list = list.filter(function (d) { return d.hasExpertReply; });
+                if (filter === 'trending') list = list.filter(function (d) { return d.isTrending; });
+
+                if (!list.length) {
+                    wrap.innerHTML = '<div class="comm-empty-state"><i data-lucide="search-x" style="width:48px;height:48px;color:var(--text-dim);opacity:.5;"></i><p>No discussions found. Be the first to ask!</p></div>';
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                    return;
+                }
+
+                wrap.innerHTML = list.map(function (d, i) {
+                    var t = d.timeAgo === 0 ? 'just now'
+                        : d.timeAgo < 24 ? d.timeAgo + 'h ago'
+                            : Math.floor(d.timeAgo / 24) + 'd ago';
+                    var ac = d.avatarColor || 'linear-gradient(135deg,#3b82f6,#6366f1)';
+                    return '<div class="comm-discussion-card" style="animation-delay:' + (i * 0.06) + 's" data-id="' + d.id + '">' +
+                        '<div class="comm-discussion-avatar" style="background:' + ac + ';">' + d.authorInitials + '</div>' +
+                        '<div class="comm-discussion-body">' +
+                        '<div class="comm-discussion-top">' +
+                        '<h3 class="comm-discussion-title">' + d.title + '</h3>' +
+                        '<span class="comm-discussion-time"><i data-lucide="clock" style="width:12px;height:12px;"></i> ' + t + '</span>' +
+                        '</div>' +
+                        '<p class="comm-discussion-preview">' + d.preview + '</p>' +
+                        '<div class="comm-discussion-footer">' +
+                        '<span class="comm-discussion-author"><i data-lucide="user" style="width:13px;height:13px;"></i> ' + d.author + '</span>' +
+                        '<span class="comm-discussion-cat">' + d.category + '</span>' +
+                        (d.hasExpertReply ? '<span class="comm-badge comm-badge-expert" style="font-size:.65rem;">✓ Expert Reply</span>' : '') +
+                        (d.isTrending ? '<span class="comm-badge comm-badge-trending" style="font-size:.65rem;">🔥 Trending</span>' : '') +
+                        '<div class="comm-discussion-stats">' +
+                        '<span><i data-lucide="message-square" style="width:13px;height:13px;"></i> ' + d.replies + '</span>' +
+                        '<span><i data-lucide="eye" style="width:13px;height:13px;"></i> ' + d.views + '</span>' +
+                        '<button class="comm-upvote-btn' + (d.liked ? ' active' : '') + '" data-disc-id="' + d.id + '" title="Upvote">' +
+                        '<svg width="13" height="13" viewBox="0 0 24 24" fill="' + (d.liked ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M5 12l7-7 7 7"/></svg>' +
+                        '<span class="upvote-count">' + d.likes + '</span>' +
+                        '</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                }).join('');
+
+                // Upvote interaction
+                wrap.querySelectorAll('.comm-upvote-btn').forEach(function (btn) {
+                    btn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        var id = parseInt(btn.dataset.discId);
+                        var d = communityData.discussions.find(function (x) { return x.id === id; });
+                        if (!d) return;
+                        d.liked = !d.liked;
+                        d.likes += d.liked ? 1 : -1;
+                        btn.classList.toggle('active', d.liked);
+                        btn.querySelector('svg').setAttribute('fill', d.liked ? 'currentColor' : 'none');
+                        btn.querySelector('.upvote-count').textContent = d.likes;
+                        btn.style.transform = 'scale(1.35)';
+                        setTimeout(function () { btn.style.transform = ''; }, 180);
+                    });
+                });
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            };
+
+            // ── 4. Override renderFeaturedExperts with stars + avatar gradients ────
+            window.renderFeaturedExperts = function () {
+                var wrap = document.getElementById('featured-experts');
+                if (!wrap) return;
+
+                wrap.innerHTML = communityData.experts.map(function (e) {
+                    var stars = [1, 2, 3, 4, 5].map(function (n) {
+                        var filled = n <= Math.floor(e.rating);
+                        return '<svg width="14" height="14" viewBox="0 0 24 24" fill="' + (filled ? '#facc15' : 'none') + '" stroke="#facc15" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+                    }).join('');
+                    var grad = e.avatarGradient || 'linear-gradient(135deg,#059669,#10b981)';
+                    return '<div class="comm-expert-card">' +
+                        '<div class="comm-expert-avatar" style="background:' + grad + ';">' +
+                        e.initials +
+                        (e.available ? '<span class="comm-expert-online"></span>' : '') +
+                        '</div>' +
+                        '<h3 class="comm-expert-name">' + e.name + '</h3>' +
+                        '<p class="comm-expert-specialty">' + e.specialty + '</p>' +
+                        '<div class="comm-expert-rating">' + stars + '<span style="margin-left:4px;">' + e.rating + '</span></div>' +
+                        '<p class="comm-expert-desc">' + e.description + '</p>' +
+                        '<div class="comm-expert-tags">' + e.tags.map(function (t) { return '<span class="comm-expert-tag">' + t + '</span>'; }).join('') + '</div>' +
+                        '<div class="comm-expert-footer">' +
+                        '<span class="comm-expert-answers"><i data-lucide="check-circle-2" style="width:14px;height:14px;"></i> ' + e.answers + ' answers</span>' +
+                        '<button class="comm-expert-ask-btn' + (e.available ? '' : ' disabled') + '"' +
+                        (e.available ? ' onclick="document.getElementById(\'ask-question-btn\').click()"' : '') + '>' +
+                        (e.available ? '<i data-lucide="message-circle" style="width:14px;height:14px;"></i> Ask' : 'Unavailable') +
+                        '</button>' +
+                        '</div>' +
+                        '</div>';
+                }).join('');
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            };
+
+            // ── 5. Add ESC-key close + scroll-to-discussion on form submit ────────
+            var overlay = document.getElementById('ask-modal-overlay');
+            if (overlay) {
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            var form = document.getElementById('ask-question-form');
+            if (form) {
+                form.addEventListener('submit', function () {
+                    // Scroll to discussions after a short delay (after render)
+                    setTimeout(function () {
+                        var disc = document.getElementById('recent-discussions');
+                        if (disc) disc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 450);
+                });
+            }
+
+            // ── 6. Setup Forum Discussion Modal ──────────────────────────────────
+            // Map each forum to which discussion categories it contains
+            var forumCategoryMap = {
+                1: ['General Farming', 'Soil & Fertilizer'],    // Regional Wheat
+                2: ['Pest & Disease', 'Irrigation', 'Soil & Fertilizer'],  // Ask an Agronomist
+                3: ['Organic Farming'],                          // Organic Farming
+                4: ['Irrigation'],                               // Water & Irrigation
+                5: ['Pest & Disease'],                           // Pest & Disease
+                6: ['Market & Selling', 'Government Schemes']   // Market Prices
+            };
+
+            var joinedForums = {};     // track which forums the user has joined
+            var currentForumId = null; // forum currently open in modal
+
+            window.openForumModal = function (forumId) {
+                var forum = communityData.forums.find(function (f) { return f.id === forumId; });
+                if (!forum) return;
+                currentForumId = forumId;
+
+                var overlay = document.getElementById('forum-modal-overlay');
+                var titleEl = document.getElementById('forum-modal-title');
+                var metaEl = document.getElementById('forum-modal-meta');
+                var threadsEl = document.getElementById('forum-modal-threads');
+                var joinBtn = document.getElementById('forum-join-confirm-btn');
+                var joinLabel = document.getElementById('forum-join-label');
+
+                if (!overlay) return;
+
+                // Title
+                titleEl.innerHTML = '<i data-lucide="message-square"></i> ' + forum.title;
+
+                // Meta row
+                metaEl.innerHTML =
+                    '<span><i data-lucide="users" style="width:14px;height:14px;color:' + forum.color + ';"></i> ' +
+                    (forum.members + (joinedForums[forumId] ? 1 : 0)).toLocaleString() + ' members</span>' +
+                    '<span><i data-lucide="message-circle" style="width:14px;height:14px;color:' + forum.color + ';"></i> ' + forum.posts + ' posts</span>' +
+                    '<span style="color:' + forum.color + ';"><i data-lucide="activity" style="width:14px;height:14px;"></i> ' + forum.lastActive + '</span>';
+
+                // Filter discussions for this forum
+                var cats = forumCategoryMap[forumId] || [];
+                var filtered = communityData.discussions.filter(function (d) {
+                    if (cats.length === 0) return true;
+                    return cats.indexOf(d.category) !== -1;
+                });
+                if (!filtered.length) {
+                    filtered = communityData.discussions.slice(0, 4);
+                }
+
+                // Render thread cards
+                var colors = ['linear-gradient(135deg,#f59e0b,#d97706)',
+                    'linear-gradient(135deg,#3b82f6,#6366f1)',
+                    'linear-gradient(135deg,#10b981,#059669)',
+                    'linear-gradient(135deg,#ef4444,#dc2626)',
+                    'linear-gradient(135deg,#8b5cf6,#7c3aed)'];
+
+                threadsEl.innerHTML = filtered.map(function (d, i) {
+                    var t = d.timeAgo === 0 ? 'just now'
+                        : d.timeAgo < 24 ? d.timeAgo + 'h ago'
+                            : Math.floor(d.timeAgo / 24) + 'd ago';
+                    var av = d.avatarColor || colors[i % colors.length];
+                    return '<div class="forum-thread-card" style="animation-delay:' + (i * 0.07) + 's;">' +
+                        '<div class="forum-thread-top">' +
+                        '<div class="forum-thread-avatar" style="background:' + av + ';">' + d.authorInitials + '</div>' +
+                        '<span class="forum-thread-author">' + d.author + '</span>' +
+                        (d.hasExpertReply ? '<span class="comm-badge comm-badge-expert" style="font-size:.6rem;margin-left:.4rem;">✓ Expert</span>' : '') +
+                        '<span class="forum-thread-time"><i data-lucide="clock" style="width:11px;height:11px;"></i> ' + t + '</span>' +
+                        '</div>' +
+                        '<div class="forum-thread-title">' + d.title + '</div>' +
+                        '<div class="forum-thread-preview">' + d.preview + '</div>' +
+                        '<div class="forum-thread-stats">' +
+                        '<span><i data-lucide="message-square" style="width:12px;height:12px;"></i> ' + d.replies + ' replies</span>' +
+                        '<span><i data-lucide="eye" style="width:12px;height:12px;"></i> ' + d.views + ' views</span>' +
+                        '<span><i data-lucide="heart" style="width:12px;height:12px;"></i> ' + d.likes + '</span>' +
+                        '</div>' +
+                        '</div>';
+                }).join('');
+
+                // Join button state
+                if (joinedForums[forumId]) {
+                    joinBtn.classList.add('joined');
+                    joinBtn.innerHTML = '<i data-lucide="check-circle-2"></i> <span>Joined!</span>';
+                } else {
+                    joinBtn.classList.remove('joined');
+                    joinBtn.innerHTML = '<i data-lucide="user-plus"></i> <span>Join Forum</span>';
+                }
+
+                // Open overlay
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+                document.getElementById('forum-reply-input').focus();
+            };
+
+            // Close forum modal
+            var forumOverlay = document.getElementById('forum-modal-overlay');
+            var closeForum = function () {
+                if (forumOverlay) {
+                    forumOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            };
+
+            if (forumOverlay) {
+                forumOverlay.addEventListener('click', function (e) {
+                    if (e.target === forumOverlay) closeForum();
+                });
+            }
+
+            var closeForumBtn = document.getElementById('close-forum-modal-btn');
+            if (closeForumBtn) closeForumBtn.addEventListener('click', closeForum);
+
+            // ESC key closes whichever modal is open
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (forumOverlay && forumOverlay.classList.contains('active')) closeForum();
+                }
+            });
+
+            // Join Forum button click
+            var joinConfirmBtn = document.getElementById('forum-join-confirm-btn');
+            if (joinConfirmBtn) {
+                joinConfirmBtn.addEventListener('click', function () {
+                    if (!currentForumId || joinedForums[currentForumId]) return;
+                    joinedForums[currentForumId] = true;
+                    var forum = communityData.forums.find(function (f) { return f.id === currentForumId; });
+                    if (forum) forum.members += 1;
+
+                    joinConfirmBtn.classList.add('joined');
+                    joinConfirmBtn.innerHTML = '<i data-lucide="check-circle-2"></i> <span>Joined!</span>';
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+                    // Update member count in meta row
+                    var metaEl = document.getElementById('forum-modal-meta');
+                    if (metaEl && forum) {
+                        var spans = metaEl.querySelectorAll('span');
+                        if (spans[0]) {
+                            var ico = spans[0].querySelector('i') ? spans[0].querySelector('i').outerHTML : '';
+                            spans[0].innerHTML = ico + ' ' + forum.members.toLocaleString() + ' members';
+                        }
+                    }
+
+                    // Also refresh forums grid so member count updates there too
+                    if (typeof window.renderForums === 'function') window.renderForums();
+                    else if (typeof renderForums === 'function') renderForums();
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                });
+            }
+
+            // Reply / Send button
+            var sendBtn = document.getElementById('forum-reply-send-btn');
+            var replyInput = document.getElementById('forum-reply-input');
+            function sendReply() {
+                if (!replyInput) return;
+                var txt = replyInput.value.trim();
+                if (!txt) return;
+
+                var threadsEl = document.getElementById('forum-modal-threads');
+                var newCard = document.createElement('div');
+                newCard.className = 'forum-thread-card user-reply';
+                newCard.style.animationDelay = '0s';
+                newCard.innerHTML =
+                    '<div class="forum-thread-top">' +
+                    '<div class="forum-thread-avatar" style="background:linear-gradient(135deg,#059669,#10b981);">YO</div>' +
+                    '<span class="forum-thread-author">You</span>' +
+                    '<span class="forum-thread-time"><i data-lucide="clock" style="width:11px;height:11px;"></i> just now</span>' +
+                    '</div>' +
+                    '<div class="forum-thread-preview" style="-webkit-line-clamp:unset;line-clamp:unset;">' + txt + '</div>';
+
+                threadsEl.insertBefore(newCard, threadsEl.firstChild);
+                replyInput.value = '';
+
+                // update posts count
+                if (currentForumId) {
+                    var f = communityData.forums.find(function (x) { return x.id === currentForumId; });
+                    if (f) f.posts += 1;
+                }
+
+                newCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+
+            if (sendBtn) sendBtn.addEventListener('click', sendReply);
+            if (replyInput) {
+                replyInput.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendReply(); }
+                });
+            }
+
+            // ── 7. Override renderForums to attach data-forum-id and wire click ──
+            window.renderForums = function () {
+                var forumsContainer = document.getElementById('forums-grid');
+                if (!forumsContainer) return;
+
+                forumsContainer.innerHTML = communityData.forums.map(function (forum) {
+                    var badgeClass = forum.badge ? 'comm-badge-' + forum.badge.type : '';
+                    var memberCount = forum.members + (joinedForums[forum.id] ? 0 : 0);
+                    return '<div class="comm-forum-card" style="--forum-accent:' + forum.color + ';" data-forum-id="' + forum.id + '">' +
+                        '<div class="comm-forum-header">' +
+                        '<div class="comm-forum-icon" style="background:' + forum.color + '18;color:' + forum.color + ';">' +
+                        '<i data-lucide="' + forum.icon + '"></i>' +
+                        '</div>' +
+                        (forum.badge ? '<span class="comm-badge ' + badgeClass + '">' + forum.badge.text + '</span>' : '') +
+                        '</div>' +
+                        '<h3 class="comm-forum-title">' + forum.title + '</h3>' +
+                        '<p class="comm-forum-desc">' + forum.description + '</p>' +
+                        '<div class="comm-forum-meta">' +
+                        '<span><i data-lucide="users" style="width:14px;height:14px;"></i> ' + (memberCount / 1000).toFixed(1) + 'K members</span>' +
+                        '<span><i data-lucide="message-circle" style="width:14px;height:14px;"></i> ' + forum.posts + ' posts</span>' +
+                        '<span class="comm-forum-active"><i data-lucide="clock" style="width:14px;height:14px;"></i> ' + forum.lastActive + '</span>' +
+                        '</div>' +
+                        '<a href="#" class="comm-forum-join" data-forum-id="' + forum.id + '">Join Discussion <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>' +
+                        '</div>';
+                }).join('');
+
+                // Attach click handlers to Join Discussion links
+                forumsContainer.querySelectorAll('.comm-forum-join').forEach(function (link) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        var fid = parseInt(link.dataset.forumId);
+                        if (typeof openForumModal === 'function') openForumModal(fid);
+                    });
+                });
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            };
+
+            // ── 8. Re-run initCommunity to pick up all enhanced functions & data ─
+            if (typeof initCommunity === 'function') {
+                initCommunity();
+            }
+
+        });
+    </script>
 </body>
 
 </html>

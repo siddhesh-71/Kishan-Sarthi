@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KishanSarthi - Empowering Indian Farmers</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -41,7 +42,7 @@
             <button class="toggle-btn" id="theme-toggle" title="Toggle Theme">
                 <i data-lucide="moon" id="theme-icon"></i>
             </button>
-            <button class="btn-signup" data-i18n="nav-signup">Sign Up</button>
+            <button class="btn-signup" id="open-auth-modal" data-i18n="nav-signup">Sign Up</button>
         </div>
     </header>
 
@@ -398,7 +399,92 @@
         <a href="#home" class="fab-up"><i data-lucide="arrow-up"></i></a>
     </main>
 
+    <!-- ═══ Auth Modal ═══ -->
+    <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-label="Authentication">
+        <div class="auth-card">
+            <button class="auth-close-btn" id="auth-close-btn" aria-label="Close">
+                <i data-lucide="x" style="width:16px;height:16px;"></i>
+            </button>
+            <div class="auth-brand">
+                <i data-lucide="sprout"></i>
+                <span>KishanSarthi</span>
+            </div>
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="tab-login" data-tab="login">Login</button>
+                <button class="auth-tab-btn" id="tab-signup" data-tab="signup">Sign Up</button>
+            </div>
+            <!-- Login Panel -->
+            <div class="auth-form-panel active" id="panel-login">
+                <div class="auth-message" id="login-message"></div>
+                <div class="auth-field">
+                    <label for="login-email">Email</label>
+                    <i class="auth-field-icon" data-lucide="mail"></i>
+                    <input type="email" id="login-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <div class="auth-field">
+                    <label for="login-password">Password</label>
+                    <i class="auth-field-icon" data-lucide="lock"></i>
+                    <input type="password" id="login-password" placeholder="Enter your password"
+                        autocomplete="current-password">
+                    <button class="auth-pwd-toggle" type="button" onclick="togglePwd('login-password',this)"
+                        aria-label="Show password">
+                        <i data-lucide="eye" style="width:16px;height:16px;"></i>
+                    </button>
+                </div>
+                <button class="auth-submit-btn" id="login-submit-btn" onclick="handleLogin()">
+                    <span class="auth-spinner"></span>
+                    <span class="auth-btn-text">Login</span>
+                </button>
+                <p style="text-align:center;font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem;">
+                    Don't have an account? <a href="#" onclick="switchAuthTab('signup')"
+                        style="color:#059669;font-weight:700;">Sign Up</a>
+                </p>
+            </div>
+            <!-- Sign Up Panel -->
+            <div class="auth-form-panel" id="panel-signup">
+                <div class="auth-message" id="signup-message"></div>
+                <div class="auth-field">
+                    <label for="signup-name">Full Name</label>
+                    <i class="auth-field-icon" data-lucide="user"></i>
+                    <input type="text" id="signup-name" placeholder="Ramesh Kumar" autocomplete="name">
+                </div>
+                <div class="auth-field">
+                    <label for="signup-email">Email</label>
+                    <i class="auth-field-icon" data-lucide="mail"></i>
+                    <input type="email" id="signup-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <div class="auth-field">
+                    <label for="signup-phone">Phone (optional)</label>
+                    <i class="auth-field-icon" data-lucide="phone"></i>
+                    <input type="tel" id="signup-phone" placeholder="9999999999" autocomplete="tel">
+                </div>
+                <div class="auth-field">
+                    <label for="signup-password">Password</label>
+                    <i class="auth-field-icon" data-lucide="lock"></i>
+                    <input type="password" id="signup-password" placeholder="Min 6 characters"
+                        autocomplete="new-password">
+                    <button class="auth-pwd-toggle" type="button" onclick="togglePwd('signup-password',this)"
+                        aria-label="Show password">
+                        <i data-lucide="eye" style="width:16px;height:16px;"></i>
+                    </button>
+                </div>
+                <button class="auth-submit-btn" id="signup-submit-btn" onclick="handleRegister()">
+                    <span class="auth-spinner"></span>
+                    <span class="auth-btn-text">Create Account</span>
+                </button>
+                <p style="text-align:center;font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem;">
+                    Already have an account? <a href="#" onclick="switchAuthTab('login')"
+                        style="color:#059669;font-weight:700;">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Toast -->
+    <div class="auth-toast" id="auth-toast"></div>
+
     <script src="app.js"></script>
+    <script src="chatbot.js"></script>
     <script>
         lucide.createIcons();
     </script>

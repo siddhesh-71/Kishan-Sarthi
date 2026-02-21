@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soil Analysis - KishanSarthi</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -46,73 +47,221 @@
     </header>
 
     <main>
-        <section class="content-wrapper" style="padding-top: 8rem; padding-bottom: 2rem;">
-            <div class="hero-tag" style="margin: 0 auto 1.5rem;">
-                <i data-lucide="shield-check"></i>
-                <span data-i18n="analysis-tag">AI-Powered Forecasting</span>
-            </div>
-            <div class="section-title">
-                <h1 data-i18n="features-title" style="font-size: 3rem;">Smart Soil Analysis</h1>
-                <p data-i18n="features-sub">Standard soil analysis machine learning model for Indian agriculture. Upload
-                    a photo and get instant results.</p>
-            </div>
-        </section>
 
         <!-- Soil Analysis Tool -->
-        <section class="content-wrapper" style="padding-top: 0;">
-            <div class="container-minimal" style="max-width: 800px; margin: 0 auto;">
-                <div class="card analysis-card">
-                    <div class="upload-zone" id="drop-zone">
+        <section class="content-wrapper" style="padding-top: 8rem; padding-bottom: 6rem;">
+            <div class="container-minimal" style="max-width: 1100px; margin: 0 auto;">
+
+                <div class="farm-tool-layout">
+                    <!-- Main Upload Area -->
+                    <div class="farm-upload-zone" id="drop-zone">
                         <input type="file" id="file-input" accept="image/*" hidden>
-                        <div class="upload-content" id="upload-placeholder">
-                            <i data-lucide="cloud-upload" class="upload-icon"></i>
-                            <h3 data-i18n="upload-title">Upload Soil Image</h3>
-                            <p data-i18n="upload-sub">Drag and drop your soil image to analyze</p>
+
+                        <div class="farm-upload-title" data-i18n="upload-title">Upload Soil Sample</div>
+                        <p class="farm-upload-sub" data-i18n="upload-sub">Tips for optimal results</p>
+
+                        <div class="farm-cloud-wrapper">
+                            <i data-lucide="cloud-download" style="width: 60px; height: 60px;"></i>
                         </div>
-                        <img id="image-preview" src="" alt="Soil Preview" class="hidden"
-                            style="max-width: 100%; border-radius: 12px;">
-                        <button id="remove-img" class="remove-btn hidden">
-                            <i data-lucide="x"></i>
+
+                        <div class="farm-drop-text">Drop Image</div>
+
+                        <div class="farm-fake-input">
+                            <span>Image file (.jpg/.png)</span>
+                        </div>
+
+                        <button id="predict-btn" class="farm-predict-btn" disabled>
+                            <i data-lucide="zap" style="width: 20px;"></i>
+                            <span data-i18n="btn-analyze">Analyze Soil Composition</span>
                         </button>
                     </div>
 
-                    <div class="options-grid" style="margin-bottom: 2rem;">
-                        <div class="input-group">
-                            <label for="region-select" data-i18n="select-region">Select Your Region</label>
-                            <select id="region-select"
-                                style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-main);">
-                                <option value="pune" data-i18n="reg-pune">Pune</option>
-                                <option value="mumbai" data-i18n="reg-mumbai">Mumbai</option>
-                                <option value="nagpur" data-i18n="reg-nagpur">Nagpur</option>
-                                <option value="nashik" data-i18n="reg-nashik">Nashik</option>
-                                <option value="aurangabad" data-i18n="reg-aurangabad">Aurangabad</option>
-                            </select>
+                    <!-- Side Card (Hidden until image is selected) -->
+                    <div id="side-card" class="farm-side-card hidden">
+                        <div class="farm-img-preview-container">
+                            <img id="image-preview" src="" alt="Soil Preview">
+                            <button id="remove-img"
+                                style="position: absolute; bottom: 1rem; right: 1rem; background: white; border: none; padding: 0.5rem; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <i data-lucide="x" style="width: 18px; color: var(--farm-dark);"></i>
+                            </button>
+                        </div>
+
+                        <div class="farm-region-box">
+                            <label class="farm-region-label" for="region-select" data-i18n="select-region">Select
+                                Region</label>
+                            <div style="position: relative;">
+                                <select id="region-select"
+                                    style="width: 100%; padding: 0.875rem 1rem; border-radius: 12px; border: 1px solid #e0e6d9; background: white; color: var(--farm-dark); font-weight: 600; cursor: pointer; appearance: none;">
+                                    <option value="pune">Pune, Maharashtra</option>
+                                    <option value="mumbai">Mumbai, Maharashtra</option>
+                                    <option value="nagpur">Nagpur, Maharashtra</option>
+                                    <option value="nashik">Nashik, Maharashtra</option>
+                                    <option value="aurangabad">Aurangabad, Maharashtra</option>
+                                </select>
+                                <i data-lucide="chevron-down"
+                                    style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); pointer-events: none; width: 16px; color: var(--farm-dark);"></i>
+                            </div>
+
+                            <div class="farm-location-indicator">
+                                <i data-lucide="map-pin" style="width: 18px;"></i>
+                                <span id="location-text">Pune, Maharashtra</span>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <button id="predict-btn" class="primary-btn" disabled style="width: 100%;">
-                        <span data-i18n="btn-analyze">Analyze Soil Composition</span>
-                        <i data-lucide="zap"></i>
-                    </button>
+                <div id="error-container" class="error-box hidden"
+                    style="margin-top: 2rem; background: #fee2e2; border: 1px solid #fecaca; color: #b91c1c; padding: 1.25rem; border-radius: 16px; display: flex; align-items: center; gap: 1rem;">
+                    <i data-lucide="alert-circle"></i>
+                    <p id="error-message" style="font-weight: 600;"></p>
+                </div>
 
-                    <div id="error-container" class="error-box hidden" style="margin-top: 1.5rem;">
-                        <i data-lucide="alert-triangle"></i>
-                        <p id="error-message"></p>
+                <div id="loading" class="hidden" style="text-align: center; margin-top: 4rem;">
+                    <div class="loader"
+                        style="width: 60px; height: 60px; border-width: 5px; margin: 0 auto 1.5rem; border-color: var(--farm-sage-light); border-top-color: var(--farm-sage);">
                     </div>
+                    <p data-i18n="loading-text" style="font-size: 1.125rem; font-weight: 700; color: var(--farm-dark);">
+                        AI is analyzing soil color and texture...</p>
                 </div>
 
-                <div id="loading" class="hidden" style="text-align: center; margin-top: 2rem;">
-                    <div class="loader"></div>
-                    <p data-i18n="loading-text">AI is analyzing soil color and texture...</p>
-                </div>
-
-                <div id="results" class="results-grid hidden"
-                    style="margin-top: 3rem; display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                <div id="results" class="results-grid hidden" style="margin-top: 4rem; display: grid; gap: 2.5rem;">
                     <!-- Result cards will be injected by JS -->
                 </div>
             </div>
         </section>
+
+
+
+        <!-- Water Requirement Calculator Section -->
+        <div class="water-calculator-section"
+            style="margin-top: 2rem; background: white; padding: 2.5rem; border-radius: 40px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid rgba(0,0,0,0.02);">
+            <h2
+                style="font-size: 1.75rem; color: var(--text-main); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+                <i data-lucide="droplets" style="color: #3b82f6;"></i>
+                <span data-i18n="water-calc-title">Smart Water Calculator</span>
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <!-- Region -->
+                <div class="input-group">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dim);"
+                        data-i18n="calc-region">Region</label>
+                    <select id="water-region"
+                        style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #e0e6d9; background: #fafbf8; color: var(--text-main);">
+                        <option value="pune">Pune</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="nagpur">Nagpur</option>
+                        <option value="nashik">Nashik</option>
+                        <option value="aurangabad">Aurangabad</option>
+                    </select>
+                </div>
+
+                <!-- Crop -->
+                <div class="input-group">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dim);"
+                        data-i18n="calc-crop">Crop</label>
+                    <select id="water-crop"
+                        style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #e0e6d9; background: #fafbf8; color: var(--text-main);">
+                        <option value="rice">Rice (Paddy)</option>
+                        <option value="wheat">Wheat</option>
+                        <option value="cotton">Cotton</option>
+                        <option value="sugarcane">Sugarcane</option>
+                        <option value="maize">Maize</option>
+                        <option value="soybean">Soybean</option>
+                    </select>
+                </div>
+
+                <!-- Soil Type -->
+                <div class="input-group">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dim);"
+                        data-i18n="calc-soil">Soil Type</label>
+                    <select id="water-soil"
+                        style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #e0e6d9; background: #fafbf8; color: var(--text-main);">
+                        <option value="loam">Loam (Balanced)</option>
+                        <option value="clay">Clay (Holds moisture)</option>
+                        <option value="black">Black Soil (High retention)</option>
+                        <option value="sandy">Sandy (Drains fast)</option>
+                        <option value="red">Red Soil</option>
+                    </select>
+                </div>
+
+                <!-- Area -->
+                <div class="input-group">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dim);"
+                        data-i18n="calc-area">Farm Area</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="number" id="water-area" placeholder="e.g. 5"
+                            style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #e0e6d9; background: #fafbf8; color: var(--text-main);">
+                        <select id="water-unit"
+                            style="padding: 1rem; border-radius: 12px; border: 1px solid #e0e6d9; background: #fafbf8; color: var(--text-main);">
+                            <option value="acre">Acres</option>
+                            <option value="hectare">Hectares</option>
+                            <option value="guntha">Guntha</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button id="calc-water-btn" class="farm-predict-btn"
+                style="margin-top: 2rem; margin-inline: 0; width: 100%;">
+                <i data-lucide="calculator"></i>
+                <span data-i18n="btn-calc-water">Calculate Water Requirement</span>
+            </button>
+
+            <!-- Result Display -->
+            <div id="water-result" class="hidden"
+                style="margin-top: 2rem; background: #eff6ff; border: 1px solid #dbeafe; padding: 2rem; border-radius: 20px; text-align: center;">
+                <h3 style="color: #1e40af; margin-bottom: 1.5rem; font-size: 1.25rem;">Estimated Water Use</h3>
+
+                <div
+                    style="display: flex; gap: 2rem; justify-content: center; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <!-- Seasonal -->
+                    <div style="text-align: center;">
+                        <div style="color: #64748b; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Total
+                            Seasonal Need</div>
+                        <div style="display: inline-flex; align-items: baseline; gap: 0.25rem;">
+                            <span id="water-value" style="font-size: 2.5rem; font-weight: 800; color: #2563eb;">0</span>
+                            <span style="font-size: 1rem; font-weight: 600; color: #60a5fa;">Gal</span>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div style="width: 1px; height: 50px; background: #cbd5e1; display: block;"></div>
+
+                    <!-- Daily -->
+                    <div style="text-align: center;">
+                        <div style="color: #64748b; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Daily
+                            Average</div>
+                        <div style="display: inline-flex; align-items: baseline; gap: 0.25rem;">
+                            <span id="water-value-daily"
+                                style="font-size: 2.5rem; font-weight: 800; color: #059669;">0</span>
+                            <span style="font-size: 1rem; font-weight: 600; color: #34d399;">Gal/Day</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="color: #64748b; font-size: 0.95rem; margin-top: 1rem; max-width: 600px; margin-inline: auto;">
+                    *This is an estimate based on standard crop needs for <span id="water-crop-display"
+                        style="font-weight: 600; color: #0f172a;">Rice</span> in <span id="water-region-display"
+                        style="font-weight: 600; color: #0f172a;">Pune</span>. Actual usage may vary based on soil
+                    retention and irrigation methods.
+                </p>
+            </div>
+        </div>
+
+        <!-- Hidden Weather Widget for Data Storage -->
+        <div id="weather-widget" style="display: none;">
+            <div id="weather-temp">25°C</div>
+            <div id="weather-condition">Clear</div>
+            <div id="weather-humidity">65</div>
+            <div id="weather-wind">12</div>
+            <div id="weather-icon">☀️</div>
+        </div>
+
+        </div>
+        </section>
     </main>
+
 
     <!-- Footer -->
     <footer class="main-footer" id="contact">
@@ -168,7 +317,59 @@
             </div>
         </div>
     </footer>
+    <!-- ═══ Auth Modal ═══ -->
+    <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true">
+        <div class="auth-card">
+            <button class="auth-close-btn" id="auth-close-btn" aria-label="Close"><i data-lucide="x"
+                    style="width:16px;height:16px;"></i></button>
+            <div class="auth-brand"><i data-lucide="sprout"></i><span>KishanSarthi</span></div>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="tab-login" data-tab="login">Login</button>
+                <button class="auth-tab-btn" id="tab-signup" data-tab="signup">Sign Up</button>
+            </div>
+            <div class="auth-form-panel active" id="panel-login">
+                <div class="auth-message" id="login-message"></div>
+                <div class="auth-field"><label for="login-email">Email</label><i class="auth-field-icon"
+                        data-lucide="mail"></i><input type="email" id="login-email" placeholder="your@email.com"
+                        autocomplete="email"></div>
+                <div class="auth-field"><label for="login-password">Password</label><i class="auth-field-icon"
+                        data-lucide="lock"></i><input type="password" id="login-password"
+                        placeholder="Enter your password" autocomplete="current-password"><button
+                        class="auth-pwd-toggle" type="button" onclick="togglePwd('login-password',this)"><i
+                            data-lucide="eye" style="width:16px;height:16px;"></i></button></div>
+                <button class="auth-submit-btn" id="login-submit-btn" onclick="handleLogin()"><span
+                        class="auth-spinner"></span><span class="auth-btn-text">Login</span></button>
+                <p style="text-align:center;font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem;">Don't have an
+                    account? <a href="#" onclick="switchAuthTab('signup')" style="color:#059669;font-weight:700;">Sign
+                        Up</a></p>
+            </div>
+            <div class="auth-form-panel" id="panel-signup">
+                <div class="auth-message" id="signup-message"></div>
+                <div class="auth-field"><label for="signup-name">Full Name</label><i class="auth-field-icon"
+                        data-lucide="user"></i><input type="text" id="signup-name" placeholder="Ramesh Kumar"
+                        autocomplete="name"></div>
+                <div class="auth-field"><label for="signup-email">Email</label><i class="auth-field-icon"
+                        data-lucide="mail"></i><input type="email" id="signup-email" placeholder="your@email.com"
+                        autocomplete="email"></div>
+                <div class="auth-field"><label for="signup-phone">Phone (optional)</label><i class="auth-field-icon"
+                        data-lucide="phone"></i><input type="tel" id="signup-phone" placeholder="9999999999"
+                        autocomplete="tel"></div>
+                <div class="auth-field"><label for="signup-password">Password</label><i class="auth-field-icon"
+                        data-lucide="lock"></i><input type="password" id="signup-password"
+                        placeholder="Min 6 characters" autocomplete="new-password"><button class="auth-pwd-toggle"
+                        type="button" onclick="togglePwd('signup-password',this)"><i data-lucide="eye"
+                            style="width:16px;height:16px;"></i></button></div>
+                <button class="auth-submit-btn" id="signup-submit-btn" onclick="handleRegister()"><span
+                        class="auth-spinner"></span><span class="auth-btn-text">Create Account</span></button>
+                <p style="text-align:center;font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem;">Already have an
+                    account? <a href="#" onclick="switchAuthTab('login')"
+                        style="color:#059669;font-weight:700;">Login</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="auth-toast" id="auth-toast"></div>
     <script src="app.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 
 </html>

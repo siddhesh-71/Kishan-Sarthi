@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farming Guidance - KishanSarthi</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -58,30 +59,38 @@
             </div>
         </section>
 
+        <!-- Search Interface -->
+        <section class="content-wrapper" style="padding-top: 0;">
+            <div class="search-container">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Explore Farming Tips & Best Practices</h3>
+                <div class="search-controls">
+                    <div class="search-input-wrapper">
+                        <i data-lucide="search"></i>
+                        <input type="text" class="guidance-search-input"
+                            placeholder="Search for farming tips, techniques...">
+                    </div>
+                    <div class="guidance-filter-group filter-group">
+                        <label>Category</label>
+                        <select>
+                            <option value="all">All Categories</option>
+                            <option value="Crop Selection">Crop Selection</option>
+                            <option value="Pest Management">Pest Management</option>
+                            <option value="Irrigation">Irrigation</option>
+                            <option value="Soil Health">Soil Health</option>
+                            <option value="Seasonal Farming">Seasonal Farming</option>
+                            <option value="Modern Techniques">Modern Techniques</option>
+                            <option value="Organic Farming">Organic Farming</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="primary-btn sm guidance-search-btn" style="width: 100%;">Search Guidance</button>
+            </div>
+        </section>
+
         <!-- Dynamic Guidance Cards -->
         <section class="content-wrapper">
-            <div class="grid-layout">
-                <div class="card" style="padding: 2.5rem;">
-                    <i data-lucide="sprout" style="color: var(--primary); margin-bottom: 1.5rem;"></i>
-                    <h3 data-i18n="guide-1-title">Crop Rotation Strategies</h3>
-                    <p data-i18n="guide-1-desc">Optimize your soil health by alternating crops across seasons.</p>
-                    <a href="#" class="learn-more" data-i18n="learn-more">Read Guide <i
-                            data-lucide="arrow-right"></i></a>
-                </div>
-                <div class="card" style="padding: 2.5rem;">
-                    <i data-lucide="droplets" style="color: var(--primary); margin-bottom: 1.5rem;"></i>
-                    <h3 data-i18n="guide-2-title">Precision Irrigation</h3>
-                    <p data-i18n="guide-2-desc">Reduce water waste while increasing yields with drip technology.</p>
-                    <a href="#" class="learn-more" data-i18n="learn-more">Read Guide <i
-                            data-lucide="arrow-right"></i></a>
-                </div>
-                <div class="card" style="padding: 2.5rem;">
-                    <i data-lucide="leaf" style="color: var(--primary); margin-bottom: 1.5rem;"></i>
-                    <h3 data-i18n="guide-3-title">Organic Transition</h3>
-                    <p data-i18n="guide-3-desc">Switching to chemical-free farming? Start with our 5-step checklist.</p>
-                    <a href="#" class="learn-more" data-i18n="learn-more">Read Guide <i
-                            data-lucide="arrow-right"></i></a>
-                </div>
+            <div class="grid-layout" id="guidance-list">
+                <!-- Data will be populated by JS -->
             </div>
         </section>
     </main>
@@ -141,6 +150,7 @@
         </div>
     </footer>
     <script src="app.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 
 </html>

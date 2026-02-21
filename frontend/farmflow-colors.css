@@ -1,0 +1,42 @@
+/* FarmFlow Unified Color System */
+:root {
+    /* Primary Colors */
+    --farm-primary: #6B8E23;
+    /* Olive Drab - Main brand color */
+    --farm-primary-light: #8FBC8F;
+    /* Dark Sea Green - Light variant */
+    --farm-primary-dark: #556B2F;
+    /* Dark Olive Green - Dark variant */
+
+    /* Neutral Colors */
+    --farm-white: #FFFFFF;
+    --farm-cream: #F5F5DC;
+    /* Beige */
+    --farm-bg: #FAF9F6;
+    /* Off-white background */
+    --farm-gray-light: #E8E8E0;
+    --farm-gray: #C0C0B8;
+    --farm-gray-dark: #808078;
+
+    /* Text Colors */
+    --farm-text-primary: #2C3E2C;
+    /* Very dark green */
+    --farm-text-secondary: #5A6B5A;
+    /* Medium dark green */
+    --farm-text-muted: #8A9B8A;
+    /* Muted green */
+
+    /* Accent Colors */
+    --farm-accent-green: #9ACD32;
+    /* Yellow Green - for highlights */
+    --farm-accent-brown: #8B7355;
+    /* Burlywood - earthy tone */
+
+    /* Status Colors */
+    --farm-success: #228B22;
+    /* Forest Green */
+    --farm-warning: #DAA520;
+    /* Goldenrod */
+    --farm-error: #B22222;
+    /* Firebrick */
+}
